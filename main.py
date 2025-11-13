@@ -1,156 +1,117 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+import google.generativeai as genai
 import os
-from dotenv import load_dotenv
-from langchain_groq import ChatGroq
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
-from langgraph.graph import StateGraph, MessagesState, START, END
-from langgraph.checkpoint.memory import MemorySaver
-import uuid
+from typing import Optional
 
-# Load environment variables
-load_dotenv()
+app = FastAPI()
 
-app = Flask(__name__)
-#CORS(app)  # Enable CORS for frontend integration
-CORS(app, origins=["https://easydoer.com", "https://www.easydoer.com"])
-
-# Initialize the LLM with Groq
-llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
-    temperature=0.7
+# Configure CORS for your GitHub Pages site
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://easydoer.com", "http://localhost:3000", "http://localhost:8000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# System message to personalize the chatbot for your portfolio
-SYSTEM_MESSAGE = SystemMessage(content="""You are Misty, a friendly AI assistant for Prabhakar Raturi's portfolio website. 
+# Configure Gemini API
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-ABOUT PRABHAKAR:
-- 18+ years of experience in IT and technical program management
-- Located in Greater Seattle Area, Washington
-- Contact: phone: 425-471-2980, email: aaccela@gmail.com
-- Certifications: PMP (Project Management Professional), CSM (Certified Scrum Master)
-- Passionate about digital transformation and continuous learning
-- Enjoys spending time in the wilderness of the Pacific Northwest when not working
+# Use Gemini 1.5 Flash (fastest, free tier)
+model = genai.GenerativeModel('gemini-1.5-flash')
 
-EXPERTISE & SKILLS:
-- Domain Knowledge: Global Supply Chain, Transportation, Engineering, Dairy Manufacturing, Public Sector, Mobility & Telecommunications
-- Technical Stack: ERP (Oracle, Workday, SAP), SailPoint, Python, AWS, Azure, PowerBI, MES, WMS, TMS, Databases
-- Program Management: Multi-year transformation programs, Cloud migration, Digital transformation, M&A support
-- Governance & Security: NIST Cybersecurity framework, Identity Governance (IGA), Compliance, Risk management
-- Leadership: Team management (50+ resources), Budget oversight ($20M+ OpEx, $17M CapEx), Vendor management
+# Store conversation history in memory (for demo purposes)
+# In production, use Redis or a database
+conversations = {}
 
-ORGANIZATIONS WORKED WITH:
-- Washington State Government
-- General Electric (GE)
-- Metrolinx (Toronto transit authority)
-- Glanbia Nutritionals (Global dairy manufacturer)
-- New York State Government
-- AT&T (Telecommunications)
+class ChatMessage(BaseModel):
+    message: str
+    conversation_id: Optional[str] = "default"
 
-MAJOR ACCOMPLISHMENTS:
+class ChatResponse(BaseModel):
+    response: str
+    conversation_id: str
 
-1. Enterprise Legacy Modernization Program
-   - Led multi-phase modernization replacing mainframe (ADABAS, VBA), SAP ECC6, and Oracle 19c
-   - Implemented Workday HCM, EIB, Workforce, and Data Analytics
-   - Delivered future-ready platform with significant cost and efficiency gains
+# Your professional information for RAG-like responses
+PROFESSIONAL_CONTEXT = """
+You are an AI assistant for Prabhakar Raturi's professional website. Here's key information about him:
 
-2. Identity Governance & Access Modernization
-   - Directed 5-year SailPoint AI-enabled Identity Governance program
-   - Improved Joiner-Mover-Leaver process efficiency by 85%
-   - Enabled enterprise-wide access audits
-   - Strengthened compliance posture and reduced audit risks
+- IT Professional with 18+ years of experience in technical program management
+- Location: Greater Seattle Area, Washington
+- Email: aaccela@gmail.com
+- Phone: 425-471-2980
+- Certifications: PMP, CSM
+- Focus: Digital Transformation, Cloud Migration, Identity Governance
 
-3. Global Manufacturing Digital Transformation (Industry 4.0)
-   - Spearheaded Industry 4.0 adoption across four global factories
-   - Deployed MES, IoT, robotics, and AI-enabled solutions
-   - Achieved 40% labor savings and 30% downtime reduction
-   - Created centralized digital dashboard for real-time production efficiency
+Key Accomplishments:
+1. Enterprise Legacy Modernization: Led modernization from mainframe to Workday HCM
+2. Identity Governance: 5-year SailPoint program, 85% efficiency improvement
+3. Manufacturing Digital Transformation: Industry 4.0 across 4 global factories, 40% labor savings
+4. Cloud Transformation: 130+ applications migrated to AWS/Azure
+5. Cybersecurity Framework: NIST implementation, improved ratings from 1.31 to 2.10
 
-4. Cloud Transformation & Governance Framework
-   - Led multi-year AWS and Azure adoption for 130+ applications
-   - Established cloud governance and modernized on-prem infrastructure
-   - Enabled new business opportunities while reducing technology debt
-   - Increased organizational agility
+Expertise: ERP (Oracle, Workday, SAP), SailPoint, Python, AWS, Azure, PowerBI, MES, WMS, TMS
+Organizations: Washington State, GE, Metrolinx, Glanbia Nutritionals, New York State, AT&T
 
-5. Cybersecurity Framework Implementation
-   - Established enterprise cybersecurity framework using NIST standards
-   - Improved control ratings from 1.31 to 2.10 in less than a year
-   - Enhanced network security, vulnerability management, and application security
-   - Improved compliance readiness across the organization
+When answering questions about Prabhakar, use this information. For other topics, respond naturally as a helpful AI assistant.
+"""
 
-PERSONALITY & TONE:
-- Be friendly, professional, and conversational
-- Show enthusiasm about Prabhakar's accomplishments
-- Provide specific details when asked
-- If asked about availability for opportunities, mention he's open to discussing new projects
-- If asked technical questions, demonstrate knowledge of his technical stack
-- If someone asks about hiring/recruiting, express interest and provide contact information
-
-BOUNDARIES:
-- If asked about something not related to Prabhakar's professional background, politely redirect
-- Don't make up information not provided here
-- If you don't know something specific, be honest and suggest they contact Prabhakar directly
-- Don't discuss other people's careers or compare Prabhakar to others
-
-Remember: You're Misty the chicken, so occasionally you can add a friendly, slightly playful touch while remaining professional!""")
-
-# Define the chatbot function
-def chatbot(state: MessagesState):
-    """Process messages and generate a response"""
-    # Add system message if it's the first message
-    messages = state["messages"]
-    if len([m for m in messages if isinstance(m, SystemMessage)]) == 0:
-        messages = [SYSTEM_MESSAGE] + messages
-    
-    response = llm.invoke(messages)
-    return {"messages": [response]}
-
-# Build the graph
-graph_builder = StateGraph(MessagesState)
-graph_builder.add_node("chatbot", chatbot)
-graph_builder.add_edge(START, "chatbot")
-graph_builder.add_edge("chatbot", END)
-
-# Add memory to persist conversation
-memory = MemorySaver()
-graph = graph_builder.compile(checkpointer=memory)
-
-@app.route('/api/chat', methods=['POST'])
-def chat():
-    """Handle chat requests from the frontend"""
+@app.post("/chat", response_model=ChatResponse)
+async def chat(chat_msg: ChatMessage):
     try:
-        data = request.json
-        user_message = data.get('message', '')
-        session_id = data.get('session_id', str(uuid.uuid4()))
+        conversation_id = chat_msg.conversation_id
         
-        if not user_message:
-            return jsonify({'error': 'Message is required'}), 400
+        # Initialize conversation history if new
+        if conversation_id not in conversations:
+            conversations[conversation_id] = []
         
-        # Configure session for memory persistence
-        config = {"configurable": {"thread_id": session_id}}
+        # Add context about Prabhakar for portfolio-related queries
+        user_message = chat_msg.message.lower()
+        is_portfolio_query = any(keyword in user_message for keyword in 
+            ["prabhakar", "experience", "skills", "work", "accomplishment", 
+             "project", "contact", "email", "phone", "background", "who are you"])
         
-        # Invoke the chatbot
-        result = graph.invoke(
-            {"messages": [HumanMessage(content=user_message)]},
-            config=config
+        # Prepare the prompt
+        if is_portfolio_query:
+            prompt = f"{PROFESSIONAL_CONTEXT}\n\nUser Question: {chat_msg.message}"
+        else:
+            prompt = chat_msg.message
+        
+        # Start chat with history
+        chat = model.start_chat(history=conversations[conversation_id])
+        
+        # Get response from Gemini
+        response = chat.send_message(prompt)
+        
+        # Update conversation history (keep last 10 exchanges to stay within limits)
+        conversations[conversation_id] = chat.history[-20:]  # 10 exchanges = 20 messages
+        
+        return ChatResponse(
+            response=response.text,
+            conversation_id=conversation_id
         )
-        
-        # Get the AI's response
-        ai_response = result["messages"][-1].content
-        
-        return jsonify({
-            'response': ai_response,
-            'session_id': session_id
-        })
     
     except Exception as e:
-        print(f"Error: {str(e)}")
-        return jsonify({'error': 'An error occurred processing your request'}), 500
+        raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
 
-@app.route('/api/health', methods=['GET'])
-def health():
-    """Health check endpoint"""
-    return jsonify({'status': 'healthy'})
+@app.post("/clear")
+async def clear_conversation(conversation_id: str = "default"):
+    """Clear conversation history"""
+    if conversation_id in conversations:
+        del conversations[conversation_id]
+    return {"message": "Conversation cleared"}
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "model": "gemini-1.5-flash"}
+
+@app.get("/")
+async def root():
+    return {"message": "Gemini Chatbot API is running", "endpoints": ["/chat", "/clear", "/health"]}
+
+# For local testing
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
