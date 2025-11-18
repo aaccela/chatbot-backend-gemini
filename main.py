@@ -119,7 +119,7 @@ async def health_check():
 async def root():
     return {"message": "Gemini Chatbot API is running", "endpoints": ["/chat", "/clear", "/health"]}
 
-# For local testing
+# For local testing -
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
