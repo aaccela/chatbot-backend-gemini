@@ -1,0 +1,1185 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Prabhakar Raturi - IT Leadership Portfolio</title>
+  <meta content="Senior IT Leader with 17+ years of experience in technical program management" name="description">
+  <meta content="IT Leadership, Program Management, Digital Transformation, Cloud Migration" name="keywords">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --default-font: "Roboto", sans-serif;
+      --heading-font: "Raleway", sans-serif;
+      --nav-font: "Poppins", sans-serif;
+      --default-color: #272829;
+      --heading-color: #45505b;
+      --accent-color: #0563bb;
+      --surface-color: #ffffff;
+      --contrast-color: #ffffff;
+      --background-color: #ffffff;
+      --background-2-color: #f1f8ff;
+    }
+
+    * {
+      color: var(--default-color);
+      font-family: var(--default-font);
+    }
+
+    body {
+      background: var(--background-color);
+      color: var(--default-color);
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      color: color-mix(in srgb, var(--accent-color), transparent 25%);
+      text-decoration: none;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--heading-color);
+      font-family: var(--heading-font);
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 300px;
+      transition: all ease-in-out 0.5s;
+      z-index: 9997;
+      border-right: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+      box-shadow: 0px 0 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .header h1 {
+      color: var(--heading-color);
+    }
+
+    .header .social-links a {
+      color: var(--default-color);
+    }
+
+    .profile-img {
+      margin: 15px auto;
+      display: block;
+      width: 120px;
+      border: 8px solid color-mix(in srgb, var(--default-color), transparent 85%);
+      border-radius: 50%;
+    }
+
+    .profile-img img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+     .profile-placeholder {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(45deg, #0563bb, #45505b);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 42px;
+      font-weight: bold;
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .logo {
+      line-height: 1;
+      margin: 0 0 20px 0;
+    }
+
+    .logo h1 {
+      font-size: 28px;
+      margin: 0;
+      padding: 0;
+      font-weight: 700;
+    }
+
+    .social-links {
+      padding: 0 15px;
+    }
+
+    .social-links a {
+      background: rgba(5, 99, 187, 0.08);
+      color: var(--accent-color);
+      line-height: 1;
+      margin: 0 2px 10px 0;
+      border-radius: 50%;
+      text-align: center;
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+      font-size: 16px;
+      border: 1px solid rgba(5, 99, 187, 0.1);
+    }
+
+    .social-links a:hover {
+      background: var(--accent-color);
+      color: var(--contrast-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(5, 99, 187, 0.3);
+    }
+
+    /* Navigation */
+    .navmenu {
+      padding: 0;
+      margin: 0 15px 20px 15px;
+    }
+
+    .navmenu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navmenu a,
+    .navmenu a:focus {
+      color: var(--heading-color);
+      padding: 12px 20px;
+      font-family: var(--nav-font);
+      font-size: 15px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      border-radius: 25px;
+      transition: 0.3s;
+      width: 100%;
+      margin-bottom: 5px;
+    }
+
+    .navmenu a:hover,
+    .navmenu a:focus,
+    .navmenu .active {
+      color: var(--contrast-color);
+      background: linear-gradient(135deg, var(--accent-color), #3b82f6);
+      box-shadow: 0 4px 15px rgba(5, 99, 187, 0.3);
+      transform: translateX(5px);
+    }
+
+    .navmenu a i {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+
+    /* Mobile menu toggle */
+    .mobile-nav-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 9998;
+      border: 0;
+      background: var(--accent-color);
+      color: var(--contrast-color);
+      width: 40px;
+      height: 40px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 16px;
+      display: none;
+    }
+
+    .mobile-nav-toggle:hover {
+      background: color-mix(in srgb, var(--accent-color), transparent 20%);
+    }
+
+    /* Main content */
+    .main {
+      margin-left: 300px;
+    }
+
+    /* Hero Section */
+    .hero {
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+      padding: 80px 0 60px 0;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(45deg, var(--background-2-color), var(--background-color));
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      font-weight: 700;
+      margin: 20px 0;
+    }
+
+    .hero p {
+      color: color-mix(in srgb, var(--default-color), transparent 30%);
+      margin: 20px 0;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+    /* Section styling */
+    .section {
+      padding: 60px 0;
+      overflow: hidden;
+    }
+
+    .section-title {
+      padding-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .section-title p {
+      margin-bottom: 0;
+      font-size: 18px;
+    }
+
+    /* About Section */
+    .about .content h2 {
+      font-weight: 700;
+      font-size: 32px;
+      color: var(--accent-color);
+    }
+
+    .about .content ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .about .content ul li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .about .content ul strong {
+      margin-right: 10px;
+      width: 120px;
+    }
+
+    .about .content ul i {
+      font-size: 16px;
+      margin-right: 5px;
+      color: var(--accent-color);
+      line-height: 0;
+    }
+
+    /* Skills Section */
+    .skills .skill-item {
+      background: var(--surface-color);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0 20px color-mix(in srgb, var(--default-color), transparent 90%);
+      text-align: center;
+      transition: 0.3s;
+      margin-bottom: 30px;
+      height: 100%;
+    }
+
+    .skills .skill-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0px 10px 40px color-mix(in srgb, var(--default-color), transparent 80%);
+    }
+
+    .skills .skill-item h4 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
+
+    .skills .skill-item p {
+      line-height: 24px;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    /* Projects Section */
+    .projects .project-item {
+      background: var(--surface-color);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0 20px color-mix(in srgb, var(--default-color), transparent 90%);
+      margin-bottom: 30px;
+      border-left: 4px solid var(--accent-color);
+      transition: 0.3s;
+    }
+
+    .projects .project-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 15px 35px color-mix(in srgb, var(--default-color), transparent 80%);
+    }
+
+    .projects .project-item h4 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+    }
+
+    .projects .project-item p {
+      line-height: 24px;
+      font-size: 16px;
+      margin: 0;
+      text-align: justify;
+    }
+
+    /* Contact Section */
+    .contact .info-item {
+      background: color-mix(in srgb, var(--accent-color), transparent 96%);
+      padding: 30px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    .contact .info-item i {
+      font-size: 38px;
+      line-height: 0;
+      color: var(--accent-color);
+    }
+
+    .contact .info-item h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 20px 0 10px 0;
+      color: var(--heading-color);
+    }
+
+    .contact .info-item p {
+      padding: 0;
+      line-height: 24px;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .contact .info-item .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .contact .info-item .social-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: var(--accent-color);
+      color: var(--contrast-color) !important;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      width: fit-content;
+      max-width: 120px;
+    }
+
+    .contact .info-item .social-links a:hover {
+      background: color-mix(in srgb, var(--accent-color), transparent 20%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(5, 99, 187, 0.3);
+    }
+
+    .contact .info-item .social-links a i {
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--background-2-color);
+      padding: 30px 0;
+      text-align: center;
+      border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 1199px) {
+      .mobile-nav-toggle {
+        display: block;
+      }
+      
+      .header {
+        left: -300px;
+      }
+      
+      .header.mobile-nav-active {
+        left: 0;
+      }
+      
+      .main {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+      
+      .hero p {
+        font-size: 18px;
+      }
+      
+      .section-title h2 {
+        font-size: 36px;
+      }
+    }
+
+    /* Chat Widget Styles */
+    .chat-widget-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        transition: transform 0.3s;
+    }
+
+    .chat-widget-button:hover {
+        transform: scale(1.1);
+    }
+
+    .chat-widget-button svg {
+        width: 28px;
+        height: 28px;
+        fill: white;
+    }
+
+    .chat-widget-container {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 400px;
+        height: 500px;
+        max-height: 70vh;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        display: none;
+        flex-direction: column;
+        z-index: 1000;
+        overflow: hidden;
+    }
+
+    .chat-widget-container.open {
+        display: flex;
+    }
+
+    .chat-widget-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .chat-widget-header h3 {
+        margin: 0;
+        font-size: 18px;
+        color: white;
+    }
+
+    .chat-widget-close {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        font-size: 24px;
+        line-height: 1;
+    }
+
+    .chat-widget-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+        background: #f8f9fa;
+    }
+
+    .chat-message {
+        margin-bottom: 16px;
+        display: flex;
+        animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .chat-message.user {
+        justify-content: flex-end;
+    }
+
+    .chat-message-content {
+        max-width: 70%;
+        padding: 12px 16px;
+        border-radius: 16px;
+        line-height: 1.5;
+        font-size: 14px;
+    }
+
+    .chat-message.user .chat-message-content {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .chat-message.assistant .chat-message-content {
+        background: white;
+        color: #333;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .chat-typing-indicator {
+        display: none;
+        padding: 12px 16px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        width: fit-content;
+    }
+
+    .chat-typing-indicator.active {
+        display: block;
+    }
+
+    .chat-typing-indicator span {
+        height: 8px;
+        width: 8px;
+        background: #667eea;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 4px;
+        animation: bounce 1.4s infinite ease-in-out;
+    }
+
+    .chat-typing-indicator span:nth-child(1) {
+        animation-delay: -0.32s;
+    }
+
+    .chat-typing-indicator span:nth-child(2) {
+        animation-delay: -0.16s;
+    }
+
+    @keyframes bounce {
+        0%, 80%, 100% {
+            transform: scale(0);
+        }
+        40% {
+            transform: scale(1);
+        }
+    }
+
+    .chat-widget-input-container {
+        padding: 15px;
+        background: white;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .chat-widget-input-wrapper {
+        display: flex;
+        gap: 10px;
+    }
+
+    .chat-widget-input {
+        flex: 1;
+        padding: 12px 16px;
+        border: 2px solid #e0e0e0;
+        border-radius: 20px;
+        font-size: 14px;
+        outline: none;
+        transition: all 0.3s;
+    }
+
+    .chat-widget-input:focus {
+        border-color: #667eea;
+    }
+
+    .chat-widget-send {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+
+    .chat-widget-send:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .chat-widget-send:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .chat-welcome {
+        text-align: center;
+        color: #666;
+        padding: 40px 20px;
+    }
+
+    .chat-welcome h4 {
+        color: #667eea;
+        margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .chat-widget-container {
+            width: calc(100vw - 40px);
+            height: 500px;
+            max-height: calc(100vh - 120px);
+            bottom: 90px;
+            right: 20px;
+        }
+
+        .chat-widget-button {
+            bottom: 10px;
+            right: 10px;
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #667eea;
+        border-radius: 3px;
+    }
+  </style>
+</head>
+
+<body class="index-page">
+
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <header id="header" class="header d-flex flex-column">
+    
+    <div class="profile-img">
+        <img src="profile.jpg" alt="Prabhakar Raturi" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+    </div>
+
+    <a href="#hero" class="logo d-flex align-items-center justify-content-center">
+      <h1 class="sitename">Prabhakar Raturi</h1>
+    </a>
+
+    <div class="social-links text-center">
+      <a href="mailto:aaccela@gmail.com" class="email" title="Email"><i class="bi bi-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/prabhakar-raturi-pmp-74444823/" target="_blank" class="linkedin" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+      <a href="https://github.com/aaccela" target="_blank" class="github" title="GitHub"><i class="bi bi-github"></i></a>
+      <a href="tel:425-471-2980" class="phone" title="Phone"><i class="bi bi-phone"></i></a>
+    </div>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
+        <li><a href="#skills"><i class="bi bi-tools navicon"></i> Skills</a></li>
+        <li><a href="#projects"><i class="bi bi-file-earmark-text navicon"></i> Projects</a></li>
+        <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+      <div class="container">
+        <h1>Hello! I'm <span style="color: var(--accent-color);">Prabhakar Raturi</span></h1>
+        <p>I'm a passionate IT professional with almost 2 decades of experience in technical program management. Over the last several years, I have enjoyed working in fast-paced global organizations. I believe in continuous learning and am always excited to take on new challenges.</p>
+        <p>When I'm not working, you can find me spending time in the wilderness of the beautiful Pacific Northwest.</p>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+      <div class="container section-title">
+        <h2>Who Am I</h2>
+        <p>A results-driven IT leader with expertise in digital transformation and program management</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4 justify-content-center">
+          <div class="col-lg-8 content">
+            <div class="row">
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>425-471-2980</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Location:</strong> <span>Greater Seattle Area</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>aaccela@gmail.com</span></li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Experience:</strong> <span>18+ Years</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Certifications:</strong> <span>PMP, CSM</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Focus:</strong> <span>Digital Transformation</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
+      <div class="container section-title">
+        <h2>Expertise & Skills</h2>
+        <p>Core competencies and technical expertise across multiple domains</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="skill-item">
+              <i class="bi bi-briefcase" style="font-size: 48px; color: var(--accent-color); margin-bottom: 20px;"></i>
+              <h4>Domain Knowledge</h4>
+              <p>Global Supply Chain, Transportation, Engineering, Dairy Manufacturing, Public Sector, Mobility & Telecommunications</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="skill-item">
+              <i class="bi bi-building" style="font-size: 48px; color: var(--accent-color); margin-bottom: 20px;"></i>
+              <h4>Organizations</h4>
+              <p>Washington State, General Electric, Metrolinx, Glanbia Nutritionals, New York State, AT&T</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="skill-item">
+              <i class="bi bi-code-slash" style="font-size: 48px; color: var(--accent-color); margin-bottom: 20px;"></i>
+              <h4>Tech Stack</h4>
+              <p>ERP (Oracle, Workday, SAP), SailPoint, Python, AWS, Azure, PowerBI, MES, WMS, TMS, Databases</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="skill-item">
+              <i class="bi bi-graph-up" style="font-size: 48px; color: var(--accent-color); margin-bottom: 20px;"></i>
+              <h4>Program Management</h4>
+              <p>Multi-year transformation programs, Cloud migration, Digital transformation, M&A support</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="skill-item">
+              <i class="bi bi-shield-check" style="font-size: 48px; color: var(--accent-color); margin-bottom: 20px;"></i>
+              <h4>Governance & Security</h4>
+              <p>NIST Cybersecurity framework, Identity Governance (IGA), Compliance, Risk management</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="skill-item">
+              <i class="bi bi-people" style="font-size: 48px; color: var(--accent-color); margin-bottom: 20px;"></i>
+              <h4>Leadership</h4>
+              <p>Team management (50+ resources), Budget oversight ($20M+ OpEx, $17M CapEx), Vendor management</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
+      <div class="container section-title">
+        <h2>Proud Accomplishments</h2>
+        <p>Major transformation initiatives that delivered significant business impact</p>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="project-item">
+              <h4>Enterprise Legacy Modernization Program</h4>
+              <p>Led a multi-phase modernization of core business processes by replacing mainframe (ADABAS, VBA), SAP ECC6, and Oracle 19c systems with Workday HCM, EIB, Workforce, and Data Analytics. Delivered a future-ready platform and achieved significant cost and efficiency gains.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="project-item">
+              <h4>Identity Governance & Access Modernization</h4>
+              <p>Directed a 5-year SailPoint AI-enabled Identity Governance program, improving Joiner-Mover-Leaver process efficiency by 85% and enabling enterprise-wide access audits. Strengthened compliance posture and reduced audit risks.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="project-item">
+              <h4>Global Manufacturing Digital Transformation (Industry 4.0)</h4>
+              <p>Spearheaded Industry 4.0 adoption across four global factories by deploying MES, IoT, robotics, and AI-enabled solutions. Achieved 40% labor savings, 30% downtime reduction, and created a centralized digital dashboard for real-time production efficiency.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="project-item">
+              <h4>Cloud Transformation & Governance Framework</h4>
+              <p>Championed a multi-year AWS and Azure adoption roadmap for 130+ applications, establishing cloud governance, modernization of on-prem infrastructure, and enabling new business opportunities. Increased agility while reducing technology debt.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+            <div class="project-item">
+              <h4>Cybersecurity Framework Implementation</h4>
+              <p>Established an enterprise cybersecurity framework using NIST standards, improving control ratings from 1.31 to 2.10 in less than a year. Enhanced network security, vulnerability management, application security, and compliance readiness across the organization.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+      <div class="container section-title">
+        <h2>Get In Touch</h2>
+        <p>I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology and transformation.</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6">
+            <div class="info-item d-flex">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Location</h3>
+                <p>Greater Seattle Area, Washington</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="info-item d-flex">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Call Me</h3>
+                <p><a href="tel:425-471-2980">425-471-2980</a></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="info-item d-flex">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email Me</h3>
+                <p><a href="mailto:aaccela@gmail.com">aaccela@gmail.com</a></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="info-item d-flex">
+              <i class="bi bi-share flex-shrink-0"></i>
+              <div>
+                <h3>Social Profiles</h3>
+                <div class="social-links">
+                  <a href="https://www.linkedin.com/in/prabhakar-raturi-pmp-74444823/" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i> LinkedIn</a>
+                  <a href="https://github.com/aaccela" class="github" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="copyright text-center">
+        <p>&copy; <span>2024 Easydoer LLC</span> - <span>All Rights Reserved</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chat Widget Button -->
+  <button class="chat-widget-button" onclick="toggleChat()" aria-label="Open chat">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3 .97 4.29L2 22l5.71-.97C9 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.38 0-2.67-.35-3.8-.96l-.27-.16-2.85.49.49-2.85-.16-.27C4.35 14.67 4 13.38 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/>
+      </svg>
+  </button>
+
+  <!-- Chat Widget Container -->
+  <div class="chat-widget-container" id="chatWidget">
+      <div class="chat-widget-header">
+          <h3>🤖 AI Assistant</h3>
+          <button class="chat-widget-close" onclick="toggleChat()">&times;</button>
+      </div>
+      
+      <div class="chat-widget-messages" id="chatWidgetMessages">
+          <div class="chat-welcome">
+              <h4>Hello! 👋</h4>
+              <p style="margin: 0; font-size: 14px;">I'm your AI assistant. Ask me about Prabhakar's experience or anything else!</p>
+          </div>
+      </div>
+      
+      <div class="chat-widget-input-container">
+          <div class="chat-widget-input-wrapper">
+              <input 
+                  type="text" 
+                  class="chat-widget-input" 
+                  id="chatWidgetInput" 
+                  placeholder="Type your message..."
+                  onkeypress="handleChatKeyPress(event)"
+              >
+              <button class="chat-widget-send" id="chatWidgetSend" onclick="sendChatMessage()">Send</button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Mobile navigation toggle
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const header = document.querySelector('#header');
+
+    if (mobileNavToggle) {
+      mobileNavToggle.addEventListener('click', function() {
+        header.classList.toggle('mobile-nav-active');
+        this.classList.toggle('bi-list');
+        this.classList.toggle('bi-x');
+      });
+    }
+
+    // Smooth scrolling for navigation
+    document.querySelectorAll('#navmenu a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          
+          if (header.classList.contains('mobile-nav-active')) {
+            header.classList.remove('mobile-nav-active');
+            mobileNavToggle.classList.remove('bi-x');
+            mobileNavToggle.classList.add('bi-list');
+          }
+          
+          document.querySelectorAll('#navmenu a').forEach(a => a.classList.remove('active'));
+          this.classList.add('active');
+        }
+      });
+    });
+
+    // Update active nav on scroll
+    window.addEventListener('scroll', () => {
+      let current = '';
+      const sections = document.querySelectorAll('section');
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 200;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      document.querySelectorAll('#navmenu a').forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === `#${current}`) {
+          a.classList.add('active');
+        }
+      });
+    });
+
+    // Add smooth transitions to skill items
+    const skillItems = document.querySelectorAll('.skill-item');
+    const projectItems = document.querySelectorAll('.project-item');
+
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    [...skillItems, ...projectItems].forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(30px)';
+      item.style.transition = 'all 0.6s ease';
+      observer.observe(item);
+    });
+
+    // Chat Widget JavaScript
+    const CHAT_API_URL = 'https://chatbot-backend-gemini.onrender.com';
+    const chatConversationId = 'conv_' + Math.random().toString(36).substr(2, 9);
+
+    function toggleChat() {
+        const widget = document.getElementById('chatWidget');
+        widget.classList.toggle('open');
+        
+        if (widget.classList.contains('open')) {
+            document.getElementById('chatWidgetInput').focus();
+        }
+    }
+
+    function handleChatKeyPress(event) {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            sendChatMessage();
+        }
+    }
+
+    async function sendChatMessage() {
+        const input = document.getElementById('chatWidgetInput');
+        const message = input.value.trim();
+        
+        if (!message) return;
+        
+        const sendBtn = document.getElementById('chatWidgetSend');
+        input.disabled = true;
+        sendBtn.disabled = true;
+        
+        addChatMessage(message, 'user');
+        input.value = '';
+        
+        showChatTyping();
+        
+        try {
+            const response = await fetch(`${CHAT_API_URL}/chat`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: message,
+                    conversation_id: chatConversationId
+                })
+            });
+            
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            
+            const data = await response.json();
+            
+            hideChatTyping();
+            addChatMessage(data.response, 'assistant');
+            
+        } catch (error) {
+            hideChatTyping();
+            addChatMessage('Sorry, I encountered an error. Please try again.', 'assistant');
+            console.error('Error:', error);
+        } finally {
+            input.disabled = false;
+            sendBtn.disabled = false;
+            input.focus();
+        }
+    }
+
+    function addChatMessage(text, type) {
+        const messagesContainer = document.getElementById('chatWidgetMessages');
+        
+        const welcomeMsg = messagesContainer.querySelector('.chat-welcome');
+        if (welcomeMsg) {
+            welcomeMsg.remove();
+        }
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `chat-message ${type}`;
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'chat-message-content';
+        contentDiv.textContent = text;
+        
+        messageDiv.appendChild(contentDiv);
+        messagesContainer.appendChild(messageDiv);
+        
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function showChatTyping() {
+        const messagesContainer = document.getElementById('chatWidgetMessages');
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'chat-message assistant';
+        typingDiv.id = 'chatTypingIndicator';
+        typingDiv.innerHTML = `
+            <div class="chat-typing-indicator active">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        `;
+        messagesContainer.appendChild(typingDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function hideChatTyping() {
+        const typingIndicator = document.getElementById('chatTypingIndicator');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+    }
+  </script>
+
+</body>
+</html>
