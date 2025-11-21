@@ -28,7 +28,7 @@ app.add_middleware(
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Use Gemini 1.5 Flash (fastest, free tier)
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-2.0-flash')
 
 # Store conversation history in memory (for demo purposes)
 # In production, use Redis or a database
